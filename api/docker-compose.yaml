@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  eda:
+    image: noname1705/ecofin_api_dev:latest
+    labels:
+      logging: "promtail"
+      logging_jobname: "containerlogs"
+    ports:    
+      - "${PORT}:${PORT}"  
+    env_file:
+      - .env
+    container_name: ecofin_api_container_dev
+    restart: always
+    networks:
+      - eda
+
+networks:
+  eda:

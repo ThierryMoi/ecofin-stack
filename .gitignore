@@ -1,0 +1,23 @@
+# Ignorer les fichiers et répertoires générés par MinIO
+minio.deb
+
+*.env
+
+# Ignorer le dossier et son contenu de configuration
+config/
+
+# Ignorer les volumes 
+volumes/
+volume/
+
+# Ignorer le dossier et son contenu des flux de travail Airflow DAGs
+dags/
+
+# Ignorer les données de MongoDB
+mongo/mongodb_data/*
+
+# Ignorer le dossier et son contenu des logs
+logs/
+
+# Ignorer le dossier et son contenu des plugins
+plugins/

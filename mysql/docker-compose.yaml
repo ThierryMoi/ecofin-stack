@@ -1,0 +1,30 @@
+version: '3'
+ 
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: admin  
+      MYSQL_DATABASE: ecofin_ai
+      MYSQL_USER: ecofin
+      MYSQL_PASSWORD: ecofin
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - /mnt/sdb2/backupbd:/mnt/sdb2/backupbd  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  dbdata:

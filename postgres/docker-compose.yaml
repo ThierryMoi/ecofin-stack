@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ecofin_key
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - /mnt/sdb2/backupbd:/mnt/sdb2/backupbd
+    ports:
+      - "5433:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: ecofin_key
+    ports:
+      - "7070:80"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
